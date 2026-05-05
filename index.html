@@ -1,0 +1,95 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Galaxy Solutions</title><!-- Google Font --><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet"><!-- Stripe Payment --><script src="https://js.stripe.com/v3/"></script><style>
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: #0a0a0a;
+  color: white;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  background: rgba(0,0,0,0.8);
+  position: sticky;
+  top: 0;
+}
+
+nav a {
+  color: white;
+  margin: 10px;
+  text-decoration: none;
+}
+
+.hero {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background: linear-gradient(45deg, #1a1a40, #4b0082);
+  animation: fadeIn 2s ease-in;
+}
+
+.hero h1 {
+  font-size: 3rem;
+}
+
+button {
+  padding: 10px 20px;
+  background: #6a00ff;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+section {
+  padding: 60px;
+  text-align: center;
+}
+
+.card {
+  display: inline-block;
+  background: #111;
+  padding: 20px;
+  margin: 10px;
+  border-radius: 10px;
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: scale(1.1);
+}
+
+@keyframes fadeIn {
+  from {opacity:0; transform: translateY(20px);} 
+  to {opacity:1; transform: translateY(0);} 
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  background: black;
+}
+</style></head><body><header>
+<h2>Galaxy Solutions</h2>
+<nav>
+<a href="#">Home</a>
+<a href="#services">Services</a>
+<a href="#pay">Pay</a>
+</nav>
+</header><section class="hero">
+<h1>Galaxy Solutions</h1>
+<p>Next Level Digital Services</p>
+<button onclick="scrollToSection()">Explore</button>
+</section><section id="services">
+<h2>Our Services</h2>
+<div class="card">Web Development</div>
+<div class="card">App Development</div>
+<div class="card">Consulting</div>
+</section><section id="pay">
+<h2
