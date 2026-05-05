@@ -24,3 +24,22 @@
 
 </body>
 </html>
+<button id="payBtn">Pay Now</button>
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+document.getElementById('payBtn').onclick = function () {
+  var options = {
+    key: "YOUR_RAZORPAY_KEY",
+    amount: 50000,
+    currency: "INR",
+    name: "Galaxy Solutions",
+    description: "Insurance Payment",
+    handler: function (response){
+      alert("Payment Successful!");
+    }
+  };
+  var rzp = new Razorpay(options);
+  rzp.open();
+}
+</script>
