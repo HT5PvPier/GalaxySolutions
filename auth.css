@@ -1,56 +1,38 @@
 body {
   margin: 0;
   font-family: Arial;
+  background: linear-gradient(135deg, #0f2027, #2c5364);
+  color: white;
 }
 
-.container {
+.auth-container {
   display: flex;
   height: 100vh;
 }
 
-/* LEFT SIDE */
 .left {
   flex: 1;
-  background: linear-gradient(135deg, #f97316, #fb923c);
-  color: white;
   display: flex;
   flex-direction: column;
   justify-content: center;
   padding: 50px;
+  background: rgba(0,0,0,0.4);
 }
 
-.left h1 {
-  font-size: 40px;
-}
-
-/* RIGHT SIDE */
 .right {
   flex: 1;
   display: flex;
-  flex-direction: column;
   justify-content: center;
-  padding: 50px;
+  align-items: center;
 }
 
-/* Tabs */
-.tabs {
-  display: flex;
-  margin-bottom: 20px;
+.right div {
+  background: rgba(255,255,255,0.1);
+  padding: 30px;
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
 }
 
-.tabs button {
-  flex: 1;
-  padding: 10px;
-  border: none;
-  cursor: pointer;
-}
-
-.tabs .active {
-  border-bottom: 3px solid orange;
-  font-weight: bold;
-}
-
-/* Form */
 input {
   width: 100%;
   padding: 10px;
@@ -60,8 +42,12 @@ input {
 button {
   padding: 10px;
   width: 100%;
-  background: orange;
+  background: #00c6ff;
   border: none;
   cursor: pointer;
-  color: white;
+}
+
+/* Slider puzzle */
+input[type=range] {
+  width: 100%;
 }
