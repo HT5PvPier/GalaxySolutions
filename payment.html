@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Payment</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<h1>Complete Your Payment</h1>
+
+<div class="card">
+  <h2>Premium: ₹999</h2>
+  <button id="payBtn">Pay Now</button>
+</div>
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+<script>
+document.getElementById('payBtn').onclick = function () {
+  var options = {
+    key: "YOUR_KEY",
+    amount: 99900,
+    currency: "INR",
+    name: "Galaxy Solutions",
+    description: "Insurance Payment",
+    handler: function () {
+      alert("Payment Successful!");
+    }
+  };
+  var rzp = new Razorpay(options);
+  rzp.open();
+}
+</script>
+
+</body>
+</html>
