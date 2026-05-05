@@ -1,32 +1,67 @@
 const express = require("express");
+const Razorpay = require("razorpay");
 const mongoose = require("mongoose");
-const app = express();
+const bodyParser = require("body-parser");
+const cors = require("cors");
 
-app.use(express.json());
+const app = express();
+app.use(bodyParser.json());
+app.use(cors());
 app.use(express.static("public"));
 
-mongoose.connect("mongodb://127.0.0.1:27017/insurance");
+// 🔗 MongoDB
+mongoose.connect("mongodb://127.0.0.1:27017/galaxy");
 
-const UserSchema = new mongoose.Schema({
+// 📊 Schema
+const PaymentSchema = new mongoose.Schema({
   name: String,
-  carNumber: String,
-  phone: String,
-  plan: String
+  email: String,
+  amount: Number,
+  paymentId: String,
+  status: String
 });
 
-const User = mongoose.model("User", UserSchema);
+const Payment = mongoose.model("Payment", PaymentSchema);
 
-// Save form data
-app.post("/submit", async (req, res) => {
-  const user = new User(req.body);
-  await user.save();
-  res.send("Saved!");
+// 💳 Razorpay setup
+const razorpay = new Razorpay({
+  key_id: "YOUR_KEY_ID",
+  key_secret: "YOUR_KEY_SECRET"
 });
 
-// Admin route
-app.get("/admin/users", async (req, res) => {
-  const users = await User.find();
-  res.json(users);
+// 🔥 Create order
+app.post("/create-order", async (req, res) => {
+  const { amount } = req.body;
+
+  const options = {
+    amount: amount * 100,
+    currency: "INR"
+  };
+
+  const order = await razorpay.orders.create(options);
+  res.json(order);
 });
 
-app.listen(3000, () => console.log("Server running"));
+// ✅ Save payment
+app.post("/verify-payment", async (req, res) => {
+  const { name, email, amount, paymentId } = req.body;
+
+  const payment = new Payment({
+    name,
+    email,
+    amount,
+    paymentId,
+    status: "Success"
+  });
+
+  await payment.save();
+  res.json({ status: "saved" });
+});
+
+// 📊 Admin: get all payments
+app.get("/admin/payments", async (req, res) => {
+  const data = await Payment.find();
+  res.json(data);
+});
+
+app.listen(3000, () => console.log("Server running on 3000"));
