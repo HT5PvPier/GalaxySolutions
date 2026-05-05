@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Panel</title>
+</head>
+<body>
+
+<h1>Galaxy Solutions Admin Panel</h1>
+
+<table border="1" id="dataTable">
+  <tr>
+    <th>Name</th>
+    <th>Car Number</th>
+    <th>Phone</th>
+    <th>Plan</th>
+  </tr>
+</table>
+
+<script>
+fetch("/admin/users")
+.then(res => res.json())
+.then(data => {
+  let table = document.getElementById("dataTable");
+
+  data.forEach(user => {
+    let row = table.insertRow();
+
+    row.insertCell(0).innerText = user.name;
+    row.insertCell(1).innerText = user.carNumber;
+    row.insertCell(2).innerText = user.phone;
+    row.insertCell(3).innerText = user.plan;
+  });
+});
+</script>
+
+</body>
+</html>
