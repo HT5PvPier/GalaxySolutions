@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login - Galaxy Solutions</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="login-box">
+  <h2>Login</h2>
+
+  <input type="email" id="email" placeholder="Enter Email"><br><br>
+  <input type="password" id="password" placeholder="Enter Password"><br><br>
+
+  <button onclick="login()">Login</button>
+
+  <p id="msg"></p>
+</div>
+
+<script>
+function login() {
+  let email = document.getElementById("email").value;
+  let pass = document.getElementById("password").value;
+
+  if(email === "" || pass === "") {
+    document.getElementById("msg").innerText = "Fill all fields";
+    return;
+  }
+
+  // Fake login check (you will replace with backend later)
+  if(email === "admin@gmail.com" && pass === "1234") {
+    window.location.href = "verify.html";
+  } else {
+    document.getElementById("msg").innerText = "Invalid Login";
+  }
+}
+</script>
+
+</body>
+</html>
