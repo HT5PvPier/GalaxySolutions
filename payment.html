@@ -39,3 +39,67 @@ document.getElementById('payBtn').onclick = function () {
 
 </body>
 </html>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Payment</title>
+</head>
+
+<body>
+
+<h2>Insurance Payment</h2>
+
+<input type="text" id="name" placeholder="Name"><br><br>
+<input type="email" id="email" placeholder="Email"><br><br>
+
+<button onclick="pay()">Pay ₹500</button>
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+<script>
+async function pay() {
+
+  let name = document.getElementById("name").value;
+  let email = document.getElementById("email").value;
+
+  // create order
+  let res = await fetch("/create-order", {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({ amount: 500 })
+  });
+
+  let order = await res.json();
+
+  var options = {
+    key: "YOUR_KEY_ID",
+    amount: order.amount,
+    currency: "INR",
+    name: "Galaxy Solutions",
+    order_id: order.id,
+
+    handler: async function (response) {
+
+      // send to backend
+      await fetch("/verify-payment", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({
+          name,
+          email,
+          amount: 500,
+          paymentId: response.razorpay_payment_id
+        })
+      });
+
+      alert("Payment Successful!");
+    }
+  };
+
+  var rzp = new Razorpay(options);
+  rzp.open();
+}
+</script>
+
+</body>
+</html>
