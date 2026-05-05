@@ -1,95 +1,126 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Galaxy Solutions</title><!-- Google Font --><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet"><!-- Stripe Payment --><script src="https://js.stripe.com/v3/"></script><style>
+<title>Galaxy Solutions</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+
+<style>
 body {
-  margin: 0;
-  font-family: 'Poppins', sans-serif;
-  background: #0a0a0a;
-  color: white;
+  margin:0;
+  font-family:'Poppins',sans-serif;
+  background:#0b0c2a;
+  color:white;
 }
 
 header {
-  display: flex;
-  justify-content: space-between;
-  padding: 20px;
-  background: rgba(0,0,0,0.8);
-  position: sticky;
-  top: 0;
+  text-align:center;
+  padding:100px 20px;
+  background:linear-gradient(135deg,#1a1b4b,#3a0ca3);
 }
 
-nav a {
-  color: white;
-  margin: 10px;
-  text-decoration: none;
-}
-
-.hero {
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  background: linear-gradient(45deg, #1a1a40, #4b0082);
-  animation: fadeIn 2s ease-in;
-}
-
-.hero h1 {
-  font-size: 3rem;
+h1 {
+  font-size:50px;
 }
 
 button {
-  padding: 10px 20px;
-  background: #6a00ff;
-  border: none;
-  color: white;
-  cursor: pointer;
+  padding:15px 30px;
+  background:#7209b7;
+  border:none;
+  color:white;
+  font-size:18px;
+  border-radius:10px;
+  cursor:pointer;
 }
 
-section {
-  padding: 60px;
-  text-align: center;
+.section {
+  padding:60px 20px;
+  text-align:center;
+}
+
+.cards {
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
 }
 
 .card {
-  display: inline-block;
-  background: #111;
-  padding: 20px;
-  margin: 10px;
-  border-radius: 10px;
-  transition: 0.3s;
+  background:rgba(255,255,255,0.1);
+  margin:15px;
+  padding:20px;
+  border-radius:15px;
+  width:250px;
+  backdrop-filter: blur(10px);
 }
 
-.card:hover {
-  transform: scale(1.1);
-}
-
-@keyframes fadeIn {
-  from {opacity:0; transform: translateY(20px);} 
-  to {opacity:1; transform: translateY(0);} 
+input {
+  padding:10px;
+  margin:10px;
+  width:250px;
+  border-radius:8px;
+  border:none;
 }
 
 footer {
-  text-align: center;
-  padding: 20px;
-  background: black;
+  padding:30px;
+  text-align:center;
+  background:#111;
 }
-</style></head><body><header>
-<h2>Galaxy Solutions</h2>
-<nav>
-<a href="#">Home</a>
-<a href="#services">Services</a>
-<a href="#pay">Pay</a>
-</nav>
-</header><section class="hero">
-<h1>Galaxy Solutions</h1>
-<p>Next Level Digital Services</p>
-<button onclick="scrollToSection()">Explore</button>
-</section><section id="services">
-<h2>Our Services</h2>
-<div class="card">Web Development</div>
-<div class="card">App Development</div>
-<div class="card">Consulting</div>
-</section><section id="pay">
-<h2
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>Galaxy Solutions</h1>
+  <p>Protect Your Future with Smart Insurance</p>
+  <button>Get Free Quote</button>
+</header>
+
+<section class="section">
+  <h2>Our Services</h2>
+  <div class="cards">
+    <div class="card">Life Insurance</div>
+    <div class="card">Health Insurance</div>
+    <div class="card">Vehicle Insurance</div>
+    <div class="card">Travel Insurance</div>
+  </div>
+</section>
+
+<section class="section">
+  <h2>Get a Quote</h2>
+  <input type="text" placeholder="Your Name"><br>
+  <input type="text" placeholder="Phone Number"><br>
+  <button>Submit</button>
+</section>
+
+<section class="section">
+  <h2>Why Choose Us?</h2>
+  <p>Trusted by thousands • Fast claims • Affordable plans</p>
+</section>
+
+<footer>
+  <p>© 202
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <button id="payBtn">Pay Now</button>
+    <script>
+var options = {
+    "key": "YOUR_KEY_ID", // from Razorpay dashboard
+    "amount": "50000", // 500₹ (amount in paise)
+    "currency": "INR",
+    "name": "Galaxy Solutions",
+    "description": "Insurance Payment",
+    "handler": function (response){
+        alert("Payment Successful!");
+    }
+};
+
+var rzp = new Razorpay(options);
+
+document.getElementById('payBtn').onclick = function(e){
+    rzp.open();
+    e.preventDefault();
+}
+</script>
