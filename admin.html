@@ -35,3 +35,43 @@ fetch("/admin/users")
 
 </body>
 </html>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Panel</title>
+</head>
+
+<body>
+
+<h1>Payments Dashboard</h1>
+
+<table border="1" id="table">
+  <tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Amount</th>
+    <th>Payment ID</th>
+  </tr>
+</table>
+
+<script>
+fetch("/admin/payments")
+.then(res => res.json())
+.then(data => {
+
+  let table = document.getElementById("table");
+
+  data.forEach(p => {
+    let row = table.insertRow();
+
+    row.insertCell(0).innerText = p.name;
+    row.insertCell(1).innerText = p.email;
+    row.insertCell(2).innerText = p.amount;
+    row.insertCell(3).innerText = p.paymentId;
+  });
+
+});
+</script>
+
+</body>
+</html>
