@@ -1,47 +1,42 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Galaxy Solutions - Auth</title>
+  <title>Secure Login</title>
   <link rel="stylesheet" href="auth.css">
 </head>
 
 <body>
 
-<div class="container">
+<div class="auth-container">
 
-  <!-- LEFT SIDE -->
+  <!-- LEFT INFO -->
   <div class="left">
     <h1>Galaxy Solutions</h1>
-    <p>
-      Secure your future with trusted insurance solutions.
-      Fast, reliable, and built for your peace of mind.
-    </p>
+    <p>Advanced protection with secure login verification.</p>
   </div>
 
-  <!-- RIGHT SIDE -->
+  <!-- RIGHT FORM -->
   <div class="right">
 
-    <!-- Toggle Buttons -->
-    <div class="tabs">
-      <button onclick="showLogin()" id="loginTab" class="active">Login</button>
-      <button onclick="showRegister()" id="registerTab">Register</button>
-    </div>
-
-    <!-- LOGIN FORM -->
-    <div id="loginForm">
-      <h2>Welcome Back</h2>
+    <!-- LOGIN -->
+    <div id="loginBox">
+      <h2>Login</h2>
       <input type="email" placeholder="Email"><br>
       <input type="password" placeholder="Password"><br>
-      <button>Login</button>
+
+      <!-- Puzzle -->
+      <p>Solve Puzzle to Continue</p>
+      <input type="range" id="slider" min="0" max="100" value="0">
+      <p id="puzzleMsg"></p>
+
+      <button onclick="checkPuzzle()">Continue</button>
     </div>
 
-    <!-- REGISTER FORM -->
-    <div id="registerForm" style="display:none;">
-      <h2>Create Account</h2>
-      <input type="text" placeholder="Full Name"><br>
-      <input type="email" placeholder="Email"><br>
-      <input type="password" placeholder="Password"><br>
-      <button>Register</button>
+    <!-- VERIFY CODE -->
+    <div id="verifyBox" style="display:none;">
+      <h2>Enter Verification Code</h2>
+      <input type="text" placeholder="6-digit code"><br>
+      <button onclick="loginSuccess()">Verify</button>
     </div>
 
   </div>
@@ -49,18 +44,23 @@
 </div>
 
 <script>
-function showLogin() {
-  document.getElementById("loginForm").style.display = "block";
-  document.getElementById("registerForm").style.display = "none";
-  document.getElementById("loginTab").classList.add("active");
-  document.getElementById("registerTab").classList.remove("active");
+function checkPuzzle() {
+  let val = document.getElementById("slider").value;
+
+  if(val > 95) {
+    document.getElementById("puzzleMsg").innerText = "Verified ✔";
+    setTimeout(() => {
+      document.getElementById("loginBox").style.display = "none";
+      document.getElementById("verifyBox").style.display = "block";
+    }, 1000);
+  } else {
+    document.getElementById("puzzleMsg").innerText = "Slide to end!";
+  }
 }
 
-function showRegister() {
-  document.getElementById("loginForm").style.display = "none";
-  document.getElementById("registerForm").style.display = "block";
-  document.getElementById("registerTab").classList.add("active");
-  document.getElementById("loginTab").classList.remove("active");
+function loginSuccess() {
+  alert("Login Successful!");
+  window.location.href = "index.html";
 }
 </script>
 
