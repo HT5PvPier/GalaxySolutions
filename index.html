@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Galaxy Solutions - Insurance</title>
+  <title>Galaxy Solutions</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
 <header>
@@ -11,35 +12,33 @@
   <nav>
     <a href="index.html">Home</a>
     <a href="plans.html">Plans</a>
-    <a href="form.html">Get Insurance</a>
     <a href="contact.html">Contact</a>
   </nav>
 </header>
 
-<section>
-  <h2>Your Trusted Insurance Partner</h2>
-  <p>Secure your future with Galaxy Solutions.</p>
-  <a href="form.html"><button>Get Started</button></a>
+<section class="hero">
+  <h2>Protect What Matters Most</h2>
+  <p>Get reliable insurance for your car, health, and life with Galaxy Solutions.</p>
+  <a href="plans.html"><button>View Plans</button></a>
 </section>
+
+<section class="info">
+  <h2>What is Insurance?</h2>
+  <p>
+    Insurance is a financial protection that helps you cover unexpected losses.
+    Whether it's your car, health, or life, insurance ensures you are financially secure.
+  </p>
+
+  <div class="cards">
+    <div class="card">🚗 Car Insurance</div>
+    <div class="card">🏥 Health Insurance</div>
+    <div class="card">❤️ Life Insurance</div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Galaxy Solutions</p>
+</footer>
 
 </body>
 </html>
-<button id="payBtn">Pay Now</button>
-
-<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-<script>
-document.getElementById('payBtn').onclick = function () {
-  var options = {
-    key: "YOUR_RAZORPAY_KEY",
-    amount: 50000,
-    currency: "INR",
-    name: "Galaxy Solutions",
-    description: "Insurance Payment",
-    handler: function (response){
-      alert("Payment Successful!");
-    }
-  };
-  var rzp = new Razorpay(options);
-  rzp.open();
-}
-</script>
