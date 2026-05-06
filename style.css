@@ -51,3 +51,12 @@ button {
   cursor: pointer;
   border-radius: 5px;
 }
+.logo img {
+  height: 50px;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
